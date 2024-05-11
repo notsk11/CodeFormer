@@ -137,7 +137,8 @@ if __name__ == '__main__':
     
     # ckpt_path = 'weights/CodeFormer/codeformer.pth'
     ckpt_path = load_file_from_url(url=pretrain_model_url['restoration'], 
-                                    model_dir='weights/CodeFormer', progress=True, file_name=None)
+                                 model_dir='/content/StableDIFF/models/upscale', progress=True, file_name=None)
+
     checkpoint = torch.load(ckpt_path)['params_ema']
     net.load_state_dict(checkpoint)
     net.eval()
@@ -237,6 +238,7 @@ if __name__ == '__main__':
             # save restored face
             if args.has_aligned:
                 save_face_name = f'{basename}.png'
+
             else:
                 save_face_name = f'{basename}_{idx:02d}.png'
             if args.suffix is not None:
